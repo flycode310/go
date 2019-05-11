@@ -3,6 +3,8 @@ package main
 import (
 	"net"
 	"log"
+	"io"
+	"time"
 )
 
 func main() {
@@ -17,7 +19,18 @@ func main() {
 			log.Print(err)
 			continue
 		}
-		go handleConn(conn)
+		go handleConn2(conn)
+	}
+}
+
+func handleConn2(c net.Conn) {
+	defer c.Close()
+	for {
+		_, err := io.WriteString(c, time.Now().Format("15:04:05\n"))
+		if err != nil {
+			return
+		}
+		time.Sleep(1 * time.Second)
 	}
 }
 
