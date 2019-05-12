@@ -1,4 +1,4 @@
-package main
+package reverb2
 
 import (
 	"net"
@@ -18,7 +18,7 @@ func echo(c net.Conn, shout string, delay time.Duration) {
 	time.Sleep(delay)
 }
 
-func HandleConnForReverb1(c net.Conn) {
+func handleConn(c net.Conn) {
 	input := bufio.NewScanner(c)
 	for input.Scan() {
 		echo (c, input.Text(), 1 * time.Second)
@@ -36,7 +36,7 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		HandleConnForReverb1(conn)
+		handleConn(conn)
 	}
 
 }

@@ -1,4 +1,4 @@
-package main
+package clock2
 
 import (
 	"net"
@@ -19,11 +19,11 @@ func main() {
 			log.Print(err)
 			continue
 		}
-		go handleConn2(conn)
+		go handleConn(conn)
 	}
 }
 
-func handleConn2(c net.Conn) {
+func handleConn(c net.Conn) {
 	defer c.Close()
 	for {
 		_, err := io.WriteString(c, time.Now().Format("15:04:05\n"))

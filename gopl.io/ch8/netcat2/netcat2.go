@@ -1,10 +1,10 @@
-package main
+package netcat2
 
 import (
-	"io"
-	"log"
 	"net"
+	"log"
 	"os"
+	"io"
 )
 
 func main() {
@@ -13,7 +13,8 @@ func main() {
 		log.Fatal(err)
 	}
 	defer conn.Close()
-	mustCopy(os.Stdout, conn)
+	go mustCopy(os.Stdout, conn)
+	mustCopy(conn, os.Stdin)
 }
 
 func mustCopy(dst io.Writer, src io.Reader) {

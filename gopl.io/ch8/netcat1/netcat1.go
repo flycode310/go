@@ -1,10 +1,10 @@
-package main
+package netcat1
 
 import (
-	"net"
-	"log"
-	"os"
 	"io"
+	"log"
+	"net"
+	"os"
 )
 
 func main() {
@@ -13,11 +13,10 @@ func main() {
 		log.Fatal(err)
 	}
 	defer conn.Close()
-	go mustCopyForNetcat2(os.Stdout, conn)
-	mustCopyForNetcat2(conn, os.Stdin)
+	mustCopy(os.Stdout, conn)
 }
 
-func mustCopyForNetcat2(dst io.Writer, src io.Reader) {
+func mustCopy(dst io.Writer, src io.Reader) {
 	if _, err := io.Copy(dst, src); err != nil {
 		log.Fatal(err)
 	}
