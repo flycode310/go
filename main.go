@@ -1,26 +1,22 @@
 package main
 
 import (
+	"time"
 	"fmt"
-	"math"
 )
 
-type Abser interface {
-	Abs() float64
-}
-
-type Myfloat float64
-
-func (f Myfloat) Abs() float64 {
-	if f < 0 {
-		return float64(-f)
-	}
-	return float64(f)
-}
-
 func main() {
-	var a Abser
-	f := Myfloat(-math.Sqrt2)
-	a = f
-	fmt.Println(a.Abs())
+
+	done := make(chan struct{})
+
+	go func() {
+		time.Sleep(time.Second)
+		//done <- struct{} {}
+		//close(done)
+		d := make(chan struct{})
+		done = d
+	} ()
+
+	<- done
+	fmt.Println("hello")
 }
