@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"fmt"
 	"strings"
-	"log"
+	"encoding/binary"
 )
 
 func sayHelloName(w http.ResponseWriter, r *http.Request) {
@@ -21,9 +21,14 @@ func sayHelloName(w http.ResponseWriter, r *http.Request) {
 
 }
 func main() {
-	http.HandleFunc("/", sayHelloName)
-	err := http.ListenAndServe(":9090", nil)
-	if err != nil {
-		log.Fatal("ListenAndServer:", err)
-	}
+
+	bytes := []byte{84, 88}
+	intNum := binary.LittleEndian.Uint16(bytes)
+	fmt.Println(intNum)
+	//http.HandleFunc("/", sayHelloName)
+	//err := http.ListenAndServe(":9090", nil)
+	//if err != nil {
+	//	log.Fatal("ListenAndServer:", err)
+	//}
+
 }
