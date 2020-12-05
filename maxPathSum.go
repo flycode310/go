@@ -5,6 +5,7 @@ type TreeNode struct {
 	Left *TreeNode
 	Right *TreeNode
 }
+
 const (
 
 	INT_MAX = int(^uint((0)) >> 1)

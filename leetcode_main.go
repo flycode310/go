@@ -6,6 +6,7 @@ func main() {
 	//leetcode.MaxProfit()
 	//leetcode.MaxSubArray()
 	//leetcode.LongestCommonSubsequence()
-	leetcode.LengthOfLTS()
+	//leetcode.LengthOfLTS()
+	leetcode.FindLength()
 
 }

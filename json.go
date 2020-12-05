@@ -17,11 +17,11 @@ type InvoiceResData struct {
 	RecipientEmail         string   `json:"recipientEmail,omitempty"`
 	InvoiceRemark          string   `json:"invoiceRemark,omitempty"`
 	TaxRegistrationNumber  string   `json:"taxRegistrationNumber,omitempty"`
-	RegisteredAddressPhone string   `json:"registeredAddressPhone,omitempty"`
+	RegisteredAddressPhone string   `json:"registeredAddressPhone"`
 	ApplyTime			   int		`json:"applyTime,omitempty"`
 	InvoiceContent		   int		`json:"invoiceContent,omitempty"`
 	InvoiceValue		   int		`json:"invoiceValue,omitempty"`
-	Status			       int		`json:"status,omitempty"`
+	//Status			       int		`json:"status,omitempty"`
 }
 
 var m int32 = 0x12345678
@@ -33,7 +33,12 @@ func main(){
 	resp := RespData{}
 	json.Unmarshal(jsonByte, &resp)
 
-	fmt.Println(resp)
+	fmt.Println(resp.Data.InvoiceValue)
+	fmt.Println(resp.Data.RegisteredAddressPhone)
+
+	rspByte,_ := json.Marshal(resp)
+	rspStr := string(rspByte)
+	fmt.Println(rspStr)
 
 	fmt.Println(n)
 }
